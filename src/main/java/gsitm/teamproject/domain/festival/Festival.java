@@ -1,4 +1,4 @@
-package gsitm.teamproject;
+package gsitm.teamproject.domain.festival;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Builder;

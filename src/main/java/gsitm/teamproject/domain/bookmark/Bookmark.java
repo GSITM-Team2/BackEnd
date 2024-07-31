@@ -1,7 +1,7 @@
-package gsitm.teamproject;
+package gsitm.teamproject.domain.bookmark;
 
+import gsitm.teamproject.domain.festival.Festival;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +19,8 @@ public class Bookmark {
 
     private String uid;
 
-    private boolean isActive;
-
-
-
+    public Bookmark(Festival festival, String uid) {
+        this.festival = festival;
+        this.uid = uid;
+    }
 }
