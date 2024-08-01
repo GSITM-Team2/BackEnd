@@ -74,6 +74,7 @@ public class BookmarkService {
         return "북마크가 해제되었습니다.";
     }
 
+    @Transactional(readOnly = true)
     public List<FestivalListResponseDto> findUserBookmark(String idToken) throws FirebaseAuthException {
 
         FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);

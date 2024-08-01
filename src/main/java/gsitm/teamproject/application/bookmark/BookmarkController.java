@@ -24,8 +24,8 @@ public class BookmarkController {
 
     @DeleteMapping()
     public String deleteBookmark(@RequestHeader String idToken,
-                                 @RequestParam Long enventId) throws FirebaseAuthException {
-        return bookmarkService.deleteBookmark(idToken,enventId);
+                                 @RequestParam Long festivalId) throws FirebaseAuthException {
+        return bookmarkService.deleteBookmark(idToken,festivalId);
     }
 
     @GetMapping("/all")

@@ -1,5 +1,6 @@
 package gsitm.teamproject.domain.bookmark;
 
+import gsitm.teamproject.domain.festival.Festival;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark,Long> {
-    @Query("SELECT b FROM Bookmark b WHERE b.uid = :uid AND b.festival = :festival_id")
-    Optional<Bookmark> findByUserIdAndFestivalId(@Param("uid") String uid, @Param("festival_id") Long festivalId);
+    @Query("SELECT b FROM Bookmark b WHERE b.uid = :uid AND b.festival.id = :festival_id")
+    Optional<Bookmark> findByUserIdAndFestivalId(@Param("uid") String uid, @Param("festivalId")Long festival_id);
 
     List<Bookmark> findByUid(String uid);
 }

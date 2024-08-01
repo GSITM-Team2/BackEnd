@@ -29,6 +29,7 @@ public class Festival {
     private String startDate;
     private String place;
     private String isFree;
+    private Long click;
 
     @Builder
     public Festival(Long id,
@@ -48,7 +49,8 @@ public class Festival {
                     String program,
                     String place,
                     String startDate,
-                    String isFree){
+                    String isFree,
+                    Long click){
         this.id = id;
         this.orgName = orgName;
         this.useFee = useFee;
@@ -67,5 +69,6 @@ public class Festival {
         this.startDate = startDate;
         this.place = place;
         this.isFree = isFree;
+        this.click=click;
     }
 }
