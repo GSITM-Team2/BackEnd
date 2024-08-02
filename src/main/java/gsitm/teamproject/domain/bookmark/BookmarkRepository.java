@@ -1,6 +1,5 @@
 package gsitm.teamproject.domain.bookmark;
 
-import gsitm.teamproject.domain.festival.Festival;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

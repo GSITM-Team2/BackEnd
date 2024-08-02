@@ -1,6 +1,4 @@
 package gsitm.teamproject.application.festival;
-
-import gsitm.teamproject.domain.festival.Festival;
 import gsitm.teamproject.domain.festival.FestivalMapper;
 import gsitm.teamproject.domain.festival.FestivalRepository;
 import gsitm.teamproject.dto.FestivalDetailResponse;
