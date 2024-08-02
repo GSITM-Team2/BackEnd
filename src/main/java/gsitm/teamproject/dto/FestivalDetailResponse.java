@@ -1,7 +1,7 @@
 package gsitm.teamproject.dto;
 
 public record FestivalDetailResponse(
-        Long event_id,
+        Long id,
         String use_fee,
         String guname,
         String main_img,

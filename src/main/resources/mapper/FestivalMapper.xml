@@ -3,13 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gsitm.teamproject.domain.festival.FestivalMapper">
-    <select id="findAll" resultType="Gsitm.Team2.data.DataResponse">
+    <select id="findAll" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
         SELECT
             title,
-            id,
             date,
             place,
-            main_img
+            main_img,
+            id
         FROM festival
     </select>
     <select id="findAllByFilter" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
@@ -17,13 +17,14 @@
         title,
         date,
         place,
-        main_img
+        main_img,
+        id
         FROM festival
 
         <where> <!--여기서부터는 MyBatis가 조건에따라 순수SQL로 바꿔주는부분임.-->
             <if test="codename != null">
                 <!--               컬럼이름        변수이름-->
-                and codename = #{codename}
+                and code_name = #{codename}
             </if>
             <if test="guname != null">
                 and guname = #{guname}
@@ -33,36 +34,22 @@
     </select>
     <select id="findById" resultType="gsitm.teamproject.dto.FestivalDetailResponse">
         SELECT
-
-        data id AS event_id ,
-        <!--        data.org_name AS org_name,-->
-        data.use_fee AS use_fee ,
-        <!--        data.player AS player,-->
-        <!--        data.org_link AS org_link ,-->
-        data.guname AS guname,
-        data.main_img AS main_img,
-        <!--        data.themecode AS themecode,-->
-        data.date AS date,
-        <!--        data.etc_desc AS etc_desc,-->
-        <!--        data.end_date AS end_date,-->
-        data.title AS title,
-        data.codename AS codename,
-        data.user_trgt AS user_trgt,
-        <!--        data.program AS program,-->
-        <!--        data.start_date AS start_date,-->
-        data.place AS place
-        <!--        data.is_free AS is_free-->
-
-        FROM data
-
-        <where> <!--여기서부터는 MyBatis가 조건에따라 순수SQL로 바꿔주는부분임.-->
+        id,
+        use_fee,
+        guname,
+        main_img,
+        date,
+        title,
+        code_name,
+        user_trgt,
+        place,
+        org_link
+        FROM festival
+        <where>
             <if test="id != null">
-                <!--               컬럼이름        변수이름-->
                 and id = #{id}
             </if>
-
         </where>
-
     </select>
 </mapper>
 

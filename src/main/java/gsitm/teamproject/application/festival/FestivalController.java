@@ -15,7 +15,7 @@ public class FestivalController{
     }
 
     @GetMapping("/all")
-    public List<FestivalListResponseDto> findAll (){
+    public List<FestivalListResponseDto> findAll(){
         return festivalService.findAll();
     }
 
@@ -26,7 +26,7 @@ public class FestivalController{
         return festivalService.findAllByFilter(codename, guname);
     }
 
-    @GetMapping("/Festival/{event_id}")
+    @GetMapping("/{festivalId}")
     public FestivalDetailResponse findById(@PathVariable Long festivalId) {
         return festivalService.findById(festivalId);
     }
