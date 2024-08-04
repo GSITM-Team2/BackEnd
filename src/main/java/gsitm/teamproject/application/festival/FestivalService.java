@@ -5,7 +5,9 @@ import gsitm.teamproject.dto.FestivalDetailResponse;
 import gsitm.teamproject.dto.FestivalListResponseDto;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FestivalService {
@@ -18,8 +20,17 @@ public class FestivalService {
         this.festivalMapper = festivalMapper;
     }
 
-    public List<FestivalListResponseDto> findAll() {
-        return festivalMapper.findAll();
+    public Map<String, Object> findAllPaginated(int page, int size) {
+        List<FestivalListResponseDto> festivals = festivalMapper.findAllPaginated(page * size, size);
+        long totalCount = festivalMapper.getTotalCount();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("festivals", festivals);
+        response.put("currentPage", page);
+        response.put("totalPages", (int) Math.ceil((double) totalCount / size));
+        response.put("totalItems", totalCount);
+
+        return response;
     }
 
     public List<FestivalListResponseDto> findAllByFilter(String codename, String guname) {

@@ -3,15 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gsitm.teamproject.domain.festival.FestivalMapper">
-    <select id="findAll" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
+    <select id="findAllPaginated" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
         SELECT
+            id,
+            main_img,
             title,
             date,
-            place,
-            main_img,
-            id
+            place
         FROM festival
+        ORDER BY id
+            LIMIT #{limit} OFFSET #{offset}
     </select>
+
+    <select id="getTotalCount" resultType="long">
+        SELECT COUNT(*) FROM festival
+    </select>
+
     <select id="findAllByFilter" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
         SELECT
         title,
