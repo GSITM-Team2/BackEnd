@@ -1,6 +1,8 @@
 package gsitm.teamproject.application.festival;
 import gsitm.teamproject.dto.FestivalDetailResponse;
 import gsitm.teamproject.dto.FestivalListResponseDto;
+import gsitm.teamproject.dto.FestivalPagedResponseDto;
+import gsitm.teamproject.dto.FestivalSearchParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +18,9 @@ public class FestivalController{
         this.festivalService = festivalService;
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> findAllPaginated(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "12") int size) {
-        Map<String, Object> response = festivalService.findAllPaginated(page, size);
-        return ResponseEntity.ok(response);
-    }
     @GetMapping("/filter")
-    List<FestivalListResponseDto> findAllByFilter(
-            @RequestParam(required = false) String codename,
-            @RequestParam(required = false) String guname) {
-        return festivalService.findAllByFilter(codename, guname);
+    FestivalPagedResponseDto findAllByFilter(FestivalSearchParam searchParam) {
+        return festivalService.findAllByFilters(searchParam);
     }
 
     @GetMapping("/{festivalId}")

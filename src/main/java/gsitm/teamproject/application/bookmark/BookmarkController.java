@@ -1,12 +1,9 @@
 package gsitm.teamproject.application.bookmark;
 
-
-import com.google.firebase.auth.FirebaseAuthException;
-import gsitm.teamproject.dto.FestivalListResponseDto;
+import gsitm.teamproject.auth.LoginUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/bookmarks")
@@ -17,20 +14,18 @@ public class BookmarkController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> saveBookmark(@RequestHeader String idToken,
-                                               @RequestParam Long festivalId) throws FirebaseAuthException{
-        return bookmarkService.saveBookmark(idToken,festivalId);
+    public ResponseEntity<Map<String, Object>> saveBookmark(@LoginUser String uid, @RequestParam Long festivalId) {
+        return bookmarkService.saveBookmark(uid, festivalId);
     }
 
     @DeleteMapping()
-    public String deleteBookmark(@RequestHeader String idToken,
-                                 @RequestParam Long festivalId) throws FirebaseAuthException {
-        return bookmarkService.deleteBookmark(idToken,festivalId);
+    public ResponseEntity<Map<String, Object>> deleteBookmark(@LoginUser String uid, @RequestParam Long festivalId) {
+        return bookmarkService.deleteBookmark(uid, festivalId);
     }
 
     @GetMapping("/all")
-    public List<FestivalListResponseDto> findUserBookmark(@RequestHeader String idToken) throws FirebaseAuthException {
-        return bookmarkService.findUserBookmark(idToken);
+    public ResponseEntity<Map<String, Object>> findUserBookmark(@LoginUser String uid) {
+        return bookmarkService.findUserBookmark(uid);
     }
 
 }

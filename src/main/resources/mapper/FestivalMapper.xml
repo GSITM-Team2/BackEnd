@@ -3,42 +3,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gsitm.teamproject.domain.festival.FestivalMapper">
-    <select id="findAllPaginated" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
-        SELECT
-            id,
-            main_img,
-            title,
-            date,
-            place
-        FROM festival
-        ORDER BY id
-            LIMIT #{limit} OFFSET #{offset}
-    </select>
 
-    <select id="getTotalCount" resultType="long">
+    <select id="countAllWithFilter" resultType="int">
         SELECT COUNT(*) FROM festival
+        <where>
+            <if test="codename != null and codename != ''">
+                AND code_name = #{codename}
+            </if>
+            <if test="guname != null and guname != ''">
+                AND guname = #{guname}
+            </if>
+        </where>
     </select>
 
     <select id="findAllByFilter" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
         SELECT
+        id,
+        main_img,
         title,
         date,
-        place,
-        main_img,
-        id
+        place
         FROM festival
-
-        <where> <!--여기서부터는 MyBatis가 조건에따라 순수SQL로 바꿔주는부분임.-->
-            <if test="codename != null">
-                <!--               컬럼이름        변수이름-->
-                and code_name = #{codename}
+        <where>
+            <if test="codename != null and codename != ''">
+                AND code_name = #{codename}
             </if>
-            <if test="guname != null">
-                and guname = #{guname}
+            <if test="guname != null and guname != ''">
+                AND guname = #{guname}
             </if>
         </where>
-
+        ORDER BY date DESC, id DESC
+        LIMIT #{pageSize} OFFSET #{offset}
     </select>
+
     <select id="findById" resultType="gsitm.teamproject.dto.FestivalDetailResponse">
         SELECT
         id,
