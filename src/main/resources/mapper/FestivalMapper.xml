@@ -32,7 +32,10 @@
                 AND guname = #{guname}
             </if>
         </where>
-        ORDER BY date DESC, id DESC
+<!--        <if test="sort=='POPULAR'">-->
+<!--            order by click desc-->
+<!--        </if>-->
+        ORDER BY date DESC
         LIMIT #{pageSize} OFFSET #{offset}
     </select>
 

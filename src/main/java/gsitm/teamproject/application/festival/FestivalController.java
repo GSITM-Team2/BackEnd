@@ -1,13 +1,8 @@
 package gsitm.teamproject.application.festival;
 import gsitm.teamproject.dto.FestivalDetailResponse;
-import gsitm.teamproject.dto.FestivalListResponseDto;
 import gsitm.teamproject.dto.FestivalPagedResponseDto;
 import gsitm.teamproject.dto.FestivalSearchParam;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/festivals")
