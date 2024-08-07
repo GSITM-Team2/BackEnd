@@ -2,11 +2,9 @@ package gsitm.teamproject.application.bookmark;
 
 import gsitm.teamproject.domain.bookmark.Bookmark;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/bookmarks")
