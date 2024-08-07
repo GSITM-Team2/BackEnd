@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FirebaseAuthenticationService implements AuthenticationService {
+    
     @Override
     public String authenticateAndGetUid(String idToken)  {
+        
         FirebaseToken decodedToken = null;
         try {
             decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);

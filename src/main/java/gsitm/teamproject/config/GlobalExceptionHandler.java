@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(FirebaseAuthException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResponseEntity<Map<String, Object>> handleFirebaseAuthException(FirebaseAuthException e) {
+    public ResponseEntity<Map<String, Object>> handleFirebaseAuthException() {
         return response(HttpStatus.UNAUTHORIZED, "firebase 인증 실패");
     }
 
@@ -35,13 +35,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Map<String, Object>> handleGeneralException(Exception e) {
+    public ResponseEntity<Map<String, Object>> handleGeneralException() {
         return response(HttpStatus.INTERNAL_SERVER_ERROR, "서버오류 발생");
     }
     
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ResponseEntity<Map<String, Object>> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+    public ResponseEntity<Map<String, Object>> handleHttpRequestMethodNotSupportedException() {
         return response(HttpStatus.METHOD_NOT_ALLOWED, "지원하지 않는 HTTP 메서드");
     }
     private ResponseEntity<Map<String, Object>> response(HttpStatus status, String message) {

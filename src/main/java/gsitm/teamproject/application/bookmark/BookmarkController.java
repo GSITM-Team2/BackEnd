@@ -1,7 +1,11 @@
 package gsitm.teamproject.application.bookmark;
 
+import gsitm.teamproject.domain.bookmark.Bookmark;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -12,18 +16,19 @@ public class BookmarkController {
         this.bookmarkService = bookmarkService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public ResponseEntity<Map<String, Object>> saveBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
+    public String saveBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
         return bookmarkService.saveBookmark(idToken, festivalId);
     }
 
     @DeleteMapping()
-    public ResponseEntity<Map<String, Object>> deleteBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
+    public String deleteBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
         return bookmarkService.deleteBookmark(idToken, festivalId);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Map<String, Object>> findUserBookmark(@RequestHeader String idToken) {
+    public List<Bookmark> findUserBookmark(@RequestHeader String idToken) {
         return bookmarkService.findUserBookmark(idToken);
     }
 
