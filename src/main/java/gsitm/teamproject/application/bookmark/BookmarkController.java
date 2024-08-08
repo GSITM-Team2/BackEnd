@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/bookmarks")
 public class BookmarkController {
@@ -16,13 +15,13 @@ public class BookmarkController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public String saveBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
-        return bookmarkService.saveBookmark(idToken, festivalId);
+    public void saveBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
+         bookmarkService.saveBookmark(idToken, festivalId);
     }
 
     @DeleteMapping()
-    public String deleteBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
-        return bookmarkService.deleteBookmark(idToken, festivalId);
+    public void deleteBookmark(@RequestHeader String idToken, @RequestParam Long festivalId) {
+        bookmarkService.deleteBookmark(idToken, festivalId);
     }
 
     @GetMapping("/all")

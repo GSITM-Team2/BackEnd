@@ -1,4 +1,5 @@
 package gsitm.teamproject.domain.festival;
+import gsitm.teamproject.domain.bookmark.Bookmark;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Builder;
@@ -31,44 +32,10 @@ public class Festival {
     private String isFree;
     private Long click;
 
+
+    //테스트용 빌더
     @Builder
-    public Festival(Long id,
-                    String orgName,
-                    String useFee,
-                    String player,
-                    String orgLink,
-                    String mainImg,
-                    String themeCode,
-                    String date,
-                    String guname,
-                    String etcDesc,
-                    String endDate,
-                    String title,
-                    String codeName,
-                    String userTrgt,
-                    String program,
-                    String place,
-                    String startDate,
-                    String isFree,
-                    Long click){
+    public Festival(Long id){
         this.id = id;
-        this.orgName = orgName;
-        this.useFee = useFee;
-        this.player = player;
-        this.orgLink = orgLink;
-        this.guname = guname;
-        this.mainImg = mainImg;
-        this.themeCode = themeCode;
-        this.date = date;
-        this.etcDesc = etcDesc;
-        this.endDate = endDate;
-        this.title = title;
-        this.codeName = codeName;
-        this.userTrgt = userTrgt;
-        this.program = program;
-        this.startDate = startDate;
-        this.place = place;
-        this.isFree = isFree;
-        this.click=click;
     }
 }

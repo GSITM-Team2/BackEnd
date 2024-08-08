@@ -5,7 +5,6 @@ import gsitm.teamproject.domain.bookmark.Bookmark;
 import gsitm.teamproject.domain.bookmark.BookmarkRepository;
 import gsitm.teamproject.domain.festival.Festival;
 import gsitm.teamproject.domain.festival.FestivalRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -27,7 +26,7 @@ public class BookmarkService {
     }
 
 
-    public String saveBookmark(String idToken, Long festivalId) {
+    public void saveBookmark(String idToken, Long festivalId) {
         String uid = authenticationService.authenticateAndGetUid(idToken);
 
         Festival festival = festivalRepository.findById(festivalId)
@@ -39,18 +38,16 @@ public class BookmarkService {
         Bookmark bookmark = new Bookmark(festival, uid);
         bookmarkRepository.save(bookmark);
 
-        return "북마크 저장완료";
     }
 
     @Transactional
-    public String deleteBookmark(String idToken, Long festivalId) {
+    public void deleteBookmark(String idToken, Long festivalId) {
         String uid = authenticationService.authenticateAndGetUid(idToken);
 
         Bookmark bookmark = bookmarkRepository.findByUserIdAndFestivalId(uid, festivalId)
                 .orElseThrow(() -> new NoSuchElementException("북마크를 찾을 수 없습니다"));
 
         bookmarkRepository.delete(bookmark);
-        return "북마크가 해제완료";
     }
 
     public List<Bookmark> findUserBookmark(String idToken) {
