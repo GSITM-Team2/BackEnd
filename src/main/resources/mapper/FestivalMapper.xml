@@ -13,6 +13,9 @@
             <if test="guname != null and guname != ''">
                 AND guname = #{guname}
             </if>
+            <if test="title != null">
+                AND title like concat('%',#{title},'%')
+            </if>
         </where>
     </select>
 
