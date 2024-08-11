@@ -10,7 +10,7 @@ public record FestivalDetailResponse(
         String codename,
         String user_trgt,
         String place,
-        String orgLink
+        String orgName
 
 
 ) {

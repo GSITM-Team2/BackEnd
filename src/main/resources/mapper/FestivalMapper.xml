@@ -53,7 +53,7 @@
         code_name,
         user_trgt,
         place,
-        org_link
+        org_name
         FROM festival
         <where>
             <if test="id != null">
