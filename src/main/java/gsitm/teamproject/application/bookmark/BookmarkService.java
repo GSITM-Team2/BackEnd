@@ -25,7 +25,7 @@ public class BookmarkService {
         this.authenticationService = authenticationService;
     }
 
-
+    @Transactional
     public void saveBookmark(String idToken, Long festivalId) {
         String uid = authenticationService.authenticateAndGetUid(idToken);
 
