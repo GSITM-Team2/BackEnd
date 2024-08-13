@@ -5,7 +5,8 @@ public record FestivalSearchParam(
         Integer pageSize,
         String codename,
         String guname,
-        String title
+        String title,
+        String sort
         ) {
     public FestivalSearchParam {
         pageNumber = pageNumber == null || pageNumber < 1 ? 1 : pageNumber;

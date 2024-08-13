@@ -13,10 +13,13 @@
             <if test="guname != null and guname != ''">
                 AND guname = #{guname}
             </if>
-            <if test="title != null">
+            <if test="title != null and title != ''" >
                 AND title like concat('%',#{title},'%')
             </if>
         </where>
+        <if test="sort=='POPULAR'">
+            order by click desc
+        </if>
     </select>
 
     <select id="findAllByFilter" resultType="gsitm.teamproject.dto.FestivalListResponseDto">
@@ -34,11 +37,18 @@
             <if test="guname != null and guname != ''">
                 AND guname = #{guname}
             </if>
+            <if test="title != null and title != ''" >
+                AND title like concat('%',#{title},'%')
+            </if>
         </where>
-<!--        <if test="sort=='POPULAR'">-->
-<!--            order by click desc-->
-<!--        </if>-->
-        ORDER BY date DESC
+        <choose>
+            <when test="sort == 'POPULAR'">
+                ORDER BY click DESC
+            </when>
+            <otherwise>
+                ORDER BY date DESC
+            </otherwise>
+        </choose>
         LIMIT #{pageSize} OFFSET #{offset}
     </select>
 
