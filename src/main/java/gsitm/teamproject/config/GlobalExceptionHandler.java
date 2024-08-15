@@ -33,12 +33,12 @@ public class GlobalExceptionHandler {
         return response(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Map<String, Object>> handleGeneralException() {
-        return response(HttpStatus.INTERNAL_SERVER_ERROR, "서버오류 발생");
-    }
-    
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public ResponseEntity<Map<String, Object>> handleGeneralException() {
+//        return response(HttpStatus.INTERNAL_SERVER_ERROR, "서버오류 발생");
+//    }
+//
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ResponseEntity<Map<String, Object>> handleHttpRequestMethodNotSupportedException() {
